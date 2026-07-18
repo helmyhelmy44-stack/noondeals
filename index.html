@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helmy Noon Deals - أفضل عروض نون يومياً</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Tajawal',sans-serif;background:#f5f5f5}
+        .top-banner{background:linear-gradient(90deg,#1a1a2e,#16213e);color:#ffd700;text-align:center;padding:8px;font-size:14px;font-weight:700}
+        .header{background:#fff;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100}
+        .header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+        .logo{font-size:24px;font-weight:900;color:#1a1a2e}
+        .logo span{color:#e74c3c}
+        .logo .crown{font-size:28px}
+        .search-box{display:flex;align-items:center;background:#f0f0f0;border-radius:25px;padding:10px 15px;margin-bottom:15px}
+        .search-box input{flex:1;border:none;background:transparent;font-family:'Tajawal';font-size:16px;outline:none}
+        .search-box button{background:#e74c3c;color:white;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:18px}
+        .header-icons{display:flex;justify-content:center;gap:30px;margin-bottom:15px}
+        .header-icon{text-align:center;cursor:pointer;position:relative}
+        .header-icon .badge{position:absolute;top:-5px;right:-5px;background:#e74c3c;color:white;border-radius:50%;width:20px;height:20px;font-size:12px;display:flex;align-items:center;justify-content:center}
+        .header-icon .icon{font-size:28px}
+        .header-icon .label{font-size:12px;color:#666;margin-top:5px}
+        .lang-switch{display:flex;justify-content:center;gap:10px;margin-bottom:10px}
+        .lang-btn{padding:8px 20px;border:2px solid #ddd;border-radius:20px;background:white;cursor:pointer;font-family:'Tajawal';font-weight:700}
+        .lang-btn.active{background:#1a1a2e;color:#ffd700;border-color:#1a1a2e}
+        .nav-bar{display:flex;background:#1a1a2e;overflow-x:auto;padding:10px;gap:5px}
+        .nav-item{flex:1;min-width:80px;text-align:center;padding:10px;color:#ccc;text-decoration:none;border-radius:10px;font-size:14px;white-space:nowrap;cursor:pointer;border:none;background:transparent;font-family:'Tajawal'}
+        .nav-item.active{background:#e74c3c;color:white}
+        .nav-item .nav-icon{display:block;font-size:20px;margin-bottom:3px}
+        .section{display:none;padding:20px;min-height:calc(100vh - 300px)}
+        .section.active{display:block}
+        .products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+        .product-card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.3s}
+        .product-card:hover{transform:translateY(-5px)}
+        .product-img{width:100%;height:150px;object-fit:cover;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:white;font-size:60px}
+        .product-info{padding:12px}
+        .product-name{font-size:14px;font-weight:700;color:#333;margin-bottom:5px;height:40px;overflow:hidden}
+        .product-price{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+        .current-price{color:#e74c3c;font-size:18px;font-weight:900}
+        .old-price{color:#999;text-decoration:line-through;font-size:14px}
+        .discount-badge{background:#27ae60;color:white;padding:2px 8px;border-radius:10px;font-size:12px}
+        .product-actions{display:flex;gap:8px}
+        .btn{flex:1;padding:8px;border:none;border-radius:8px;cursor:pointer;font-family:'Tajawal';font-weight:700;font-size:12px}
+        .btn-primary{background:linear-gradient(135deg,#e74c3c,#c0392b);color:white}
+        .btn-secondary{background:#f0f0f0;color:#333}
+        .btn-fav{width:35px;background:#ffe0e0;color:#e74c3c;font-size:16px}
+        .hero{background:linear-gradient(135deg,#1a1a2e,#16213e);color:white;padding:30px 20px;text-align:center;border-radius:20px;margin-bottom:20px}
+        .hero h1{font-size:28px;margin-bottom:10px}
+        .hero h1 span{color:#ffd700}
+        .hero p{color:#ccc;margin-bottom:20px}
+        .hero-buttons{display:flex;flex-direction:column;gap:10px}
+        .hero-btn{padding:15px;border-radius:15px;border:none;font-family:'Tajawal';font-weight:900;font-size:16px;cursor:pointer}
+        .hero-btn-primary{background:linear-gradient(135deg,#e74c3c,#c0392b);color:white}
+        .hero-btn-secondary{background:transparent;color:white;border:2px solid rgba(255,255,255,0.3)}
+        .categories{display:flex;gap:10px;overflow-x:auto;padding:10px 0;margin-bottom:20px}
+        .category{min-width:100px;background:white;padding:15px;border-radius:15px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.1);cursor:pointer}
+        .category .cat-icon{font-size:30px;margin-bottom:5px}
+        .category .cat-name{font-size:12px;font-weight:700}
+        .section-title{font-size:20px;font-weight:900;margin-bottom:15px;color:#1a1a2e;display:flex;align-items:center;gap:10px}
+        .cart-item{display:flex;gap:15px;background:white;padding:15px;border-radius:15px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+        .cart-item-img{width:80px;height:80px;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-size:30px}
+        .cart-item-info{flex:1}
+        .cart-item-name{font-weight:700;margin-bottom:5px}
+        .cart-item-price{color:#e74c3c;font-weight:900}
+        .cart-item-qty{display:flex;align-items:center;gap:10px;margin-top:5px}
+        .qty-btn{width:30px;height:30px;border-radius:50%;border:none;background:#f0f0f0;cursor:pointer;font-size:18px}
+        .cart-summary{background:white;padding:20px;border-radius:15px;margin-top:20px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+        .summary-row{display:flex;justify-content:space-between;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #eee}
+        .summary-row.total{font-size:18px;font-weight:900;color:#e74c3c;border-top:2px solid #eee;border-bottom:none;padding-top:10px}
+        .checkout-btn{width:100%;padding:15px;background:linear-gradient(135deg,#27ae60,#219a52);color:white;border:none;border-radius:15px;font-family:'Tajawal';font-weight:900;font-size:16px;cursor:pointer;margin-top:15px}
+        .profile-header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:white;padding:30px;text-align:center;border-radius:20px;margin-bottom:20px}
+        .profile-avatar{width:80px;height:80px;background:#ffd700;border-radius:50%;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;font-size:40px}
+        .profile-name{font-size:20px;font-weight:900}
+        .profile-email{color:#ccc;font-size:14px}
+        .menu-list{background:white;border-radius:15px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+        .menu-item{display:flex;align-items:center;gap:15px;padding:15px;border-bottom:1px solid #eee;cursor:pointer}
+        .menu-item:last-child{border-bottom:none}
+        .menu-item-icon{width:40px;height:40px;background:#f0f0f0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
+        .menu-item-text{flex:1;font-weight:700}
+        .menu-item-arrow{color:#999}
+        .form-group{margin-bottom:15px}
+        .form-group label{display:block;margin-bottom:5px;font-weight:700;color:#333}
+        .form-group input,.form-group textarea{width:100%;padding:12px;border:2px solid #ddd;border-radius:10px;font-family:'Tajawal';font-size:16px;outline:none}
+        .form-group input:focus,.form-group textarea:focus{border-color:#e74c3c}
+        .footer{background:#1a1a2e;color:white;padding:30px 20px;text-align:center;margin-top:30px}
+        .footer-logo{font-size:24px;font-weight:900;margin-bottom:10px}
+        .footer-logo span{color:#e74c3c}
+        .footer-links{display:flex;justify-content:center;gap:20px;margin:15px 0;flex-wrap:wrap}
+        .footer-links a{color:#ccc;text-decoration:none}
+        .footer-social{display:flex;justify-content:center;gap:15px;margin:15px 0}
+        .social-icon{width:40px;height:40px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+        .footer-copy{color:#666;font-size:12px;margin-top:15px}
+        .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1a2e;color:white;padding:12px 25px;border-radius:25px;z-index:1000;display:none;font-weight:700}
+        .toast.show{display:block;animation:fadeIn 0.3s}
+        @keyframes fadeIn{from{opacity:0;transform:translateX(-50%)translateY(20px)}to{opacity:1;transform:translateX(-50%)translateY(0)}}
+        .empty-state{text-align:center;padding:40px 20px;color:#999}
+        .empty-state .icon{font-size:60px;margin-bottom:15px}
+        .empty-state h3{font-size:18px;color:#333;margin-bottom:10px}
+        @media(min-width:768px){.products-grid{grid-template-columns:repeat(3,1fr)}.hero-buttons{flex-direction:row;justify-content:center}}
+    </style>
+</head>
+<body>
+    <!-- شريط العروض العلوي -->
+    <div class="top-banner">🎁 عروض حصرية يومية | عمولة تصل إلى 10% على كل عملية شراء!</div>
+    
+    <!-- الهيدر -->
+    <div class="header">
+        <div class="header-top">
+            <div class="logo">Helmy <span>Noon</span> Deals 👑</div>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="ابحث عن منتجات نون..." id="searchInput">
+            <button onclick="searchProducts()">🔍</button>
+        </div>
+        <div class="header-icons">
+            <div class="header-icon" onclick="showSection('favorites')">
+                <div class="icon">❤️</div>
+                <div class="badge" id="favCount">0</div>
+                <div class="label">المفضلة</div>
+            </div>
+            <div class="header-icon" onclick="showSection('cart')">
+                <div class="icon">🛍️</div>
+                <div class="badge" id="cartCount">0</div>
+                <div class="label">السلة</div>
+            </div>
+            <div class="header-icon" onclick="showSection('account')">
+                <div class="icon">👤</div>
+                <div class="label">حسابي</div>
+            </div>
+        </div>
+        <div class="lang-switch">
+            <button class="lang-btn active">🇸🇦 السعودية</button>
+            <button class="lang-btn">🇪🇬 English</button>
+        </div>
+    </div>
+    
+    <!-- شريط التنقل -->
+    <div class="nav-bar">
+        <button class="nav-item active" onclick="showSection('home')">
+            <span class="nav-icon">🏠</span>
+            الرئيسية
+        </button>
+        <button class="nav-item" onclick="showSection('mobiles')">
+            <span class="nav-icon">📱</span>
+            موبايلات
+        </button>
+        <button class="nav-item" onclick="showSection('laptops')">
+            <span class="nav-icon">💻</span>
+            لابتوبات
+        </button>
+        <button class="nav-item" onclick="showSection('home-appliances')">
+            <span class="nav-icon">🏠</span>
+            منزلية
+        </button>
+                  </div>
+                  
