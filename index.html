@@ -22,8 +22,8 @@
         .header-icon .badge{position:absolute;top:-5px;right:-5px;background:#e74c3c;color:white;border-radius:50%;width:20px;height:20px;font-size:12px;display:flex;align-items:center;justify-content:center}
         .header-icon .icon{font-size:28px}
         .header-icon .label{font-size:12px;color:#666;margin-top:5px}
-        .lang-switch{display:flex;justify-content:center;gap:10px;margin-bottom:10px}
-        .lang-btn{padding:8px 20px;border:2px solid #ddd;border-radius:20px;background:white;cursor:pointer;font-family:'Tajawal';font-weight:700}
+        .lang-switch{display:flex;justify-content:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+        .lang-btn{padding:8px 15px;border:2px solid #ddd;border-radius:20px;background:white;cursor:pointer;font-family:'Tajawal';font-weight:700;font-size:13px}
         .lang-btn.active{background:#1a1a2e;color:#ffd700;border-color:#1a1a2e}
         .nav-bar{display:flex;background:#1a1a2e;overflow-x:auto;padding:10px;gap:5px}
         .nav-item{flex:1;min-width:80px;text-align:center;padding:10px;color:#ccc;text-decoration:none;border-radius:10px;font-size:14px;white-space:nowrap;cursor:pointer;border:none;background:transparent;font-family:'Tajawal'}
@@ -37,7 +37,7 @@
         .product-img{width:100%;height:150px;object-fit:cover;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:white;font-size:60px}
         .product-info{padding:12px}
         .product-name{font-size:14px;font-weight:700;color:#333;margin-bottom:5px;height:40px;overflow:hidden}
-        .product-price{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+        .product-price{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
         .current-price{color:#e74c3c;font-size:18px;font-weight:900}
         .old-price{color:#999;text-decoration:line-through;font-size:14px}
         .discount-badge{background:#27ae60;color:white;padding:2px 8px;border-radius:10px;font-size:12px}
@@ -46,6 +46,7 @@
         .btn-primary{background:linear-gradient(135deg,#e74c3c,#c0392b);color:white}
         .btn-secondary{background:#f0f0f0;color:#333}
         .btn-fav{width:35px;background:#ffe0e0;color:#e74c3c;font-size:16px}
+        .btn-noon{background:linear-gradient(135deg,#f5a623,#d48c1a);color:white}
         .hero{background:linear-gradient(135deg,#1a1a2e,#16213e);color:white;padding:30px 20px;text-align:center;border-radius:20px;margin-bottom:20px}
         .hero h1{font-size:28px;margin-bottom:10px}
         .hero h1 span{color:#ffd700}
@@ -69,7 +70,7 @@
         .cart-summary{background:white;padding:20px;border-radius:15px;margin-top:20px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
         .summary-row{display:flex;justify-content:space-between;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #eee}
         .summary-row.total{font-size:18px;font-weight:900;color:#e74c3c;border-top:2px solid #eee;border-bottom:none;padding-top:10px}
-        .checkout-btn{width:100%;padding:15px;background:linear-gradient(135deg,#27ae60,#219a52);color:white;border:none;border-radius:15px;font-family:'Tajawal';font-weight:900;font-size:16px;cursor:pointer;margin-top:15px}
+        .checkout-btn{width:100%;padding:15px;background:linear-gradient(135deg,#f5a623,#d48c1a);color:white;border:none;border-radius:15px;font-family:'Tajawal';font-weight:900;font-size:16px;cursor:pointer;margin-top:15px}
         .profile-header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:white;padding:30px;text-align:center;border-radius:20px;margin-bottom:20px}
         .profile-avatar{width:80px;height:80px;background:#ffd700;border-radius:50%;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;font-size:40px}
         .profile-name{font-size:20px;font-weight:900}
@@ -98,6 +99,7 @@
         .empty-state{text-align:center;padding:40px 20px;color:#999}
         .empty-state .icon{font-size:60px;margin-bottom:15px}
         .empty-state h3{font-size:18px;color:#333;margin-bottom:10px}
+        .country-info{background:#e8f4fd;padding:10px;border-radius:10px;text-align:center;margin-bottom:15px;font-weight:700;color:#1a1a2e}
         @media(min-width:768px){.products-grid{grid-template-columns:repeat(3,1fr)}.hero-buttons{flex-direction:row;justify-content:center}}
     </style>
 </head>
@@ -115,25 +117,27 @@
             <button onclick="searchProducts()">🔍</button>
         </div>
         <div class="header-icons">
-            <div class="header-icon" onclick="showSection('favorites')">
-                <div class="icon">❤️</div>
-                <div class="badge" id="favCount">0</div>
-                <div class="label">المفضلة</div>
+            <div class="header-icon" onclick="showSection('account')">
+                <div class="icon">👤</div>
+                <div class="label">حسابي</div>
             </div>
             <div class="header-icon" onclick="showSection('cart')">
                 <div class="icon">🛍️</div>
                 <div class="badge" id="cartCount">0</div>
                 <div class="label">السلة</div>
             </div>
-            <div class="header-icon" onclick="showSection('account')">
-                <div class="icon">👤</div>
-                <div class="label">حسابي</div>
+            <div class="header-icon" onclick="showSection('favorites')">
+                <div class="icon">❤️</div>
+                <div class="badge" id="favCount">0</div>
+                <div class="label">المفضلة</div>
             </div>
         </div>
         <div class="lang-switch">
-            <button class="lang-btn active">🇸🇦 السعودية</button>
-            <button class="lang-btn">🇪🇬 English</button>
+            <button class="lang-btn active" onclick="setCountry('sa')">🇸🇦 السعودية</button>
+            <button class="lang-btn" onclick="setCountry('eg')">🇪🇬 مصر</button>
+            <button class="lang-btn" onclick="setCountry('ae')">🇦🇪 الإمارات</button>
         </div>
+        <div class="country-info" id="countryInfo">🇸🇦 أنت تتصفح: السعودية | العملة: ريال سعودي</div>
     </div>
     
     <!-- شريط التنقل -->
@@ -154,15 +158,16 @@
             <span class="nav-icon">🏠</span>
             منزلية
         </button>
-                  </div>
-        <!-- الصفحة الرئيسية -->
+    </div>
+    
+    <!-- الصفحة الرئيسية -->
     <div class="section active" id="home">
         <div class="hero">
             <h1>أفضل عروض <span>نون</span> يومياً</h1>
             <p>اكتشف أحدث المنتجات بأفضل الأسعار مع عمولات تصل إلى 10%</p>
             <div class="hero-buttons">
                 <button class="hero-btn hero-btn-primary" onclick="showSection('mobiles')">🎁 عروض اليوم</button>
-                <button class="hero-btn hero-btn-secondary" onclick="showSection('home')">📱 تصفح المنتجات</button>
+                <button class="hero-btn hero-btn-secondary" onclick="window.open('https://www.noon.com/'+currentCountry+'-ar/','_blank')">🛒 تصفح نون مباشرة</button>
             </div>
         </div>
         
@@ -179,11 +184,11 @@
                 <div class="cat-icon">🏠</div>
                 <div class="cat-name">أجهزة منزلية</div>
             </div>
-            <div class="category" onclick="showSection('home')">
+            <div class="category" onclick="window.open('https://www.noon.com/'+currentCountry+'-ar/electronics-and-mobiles/headphones-and-earphones','_blank')">
                 <div class="cat-icon">🎧</div>
                 <div class="cat-name">إكسسوارات</div>
             </div>
-            <div class="category" onclick="showSection('home')">
+            <div class="category" onclick="window.open('https://www.noon.com/'+currentCountry+'-ar/fashion','_blank')">
                 <div class="cat-icon">👕</div>
                 <div class="cat-name">أزياء</div>
             </div>
@@ -225,7 +230,7 @@
             <div class="summary-row"><span>المجموع الفرعي:</span><span id="subtotal">0 ر.س</span></div>
             <div class="summary-row"><span>الشحن:</span><span>مجاني</span></div>
             <div class="summary-row total"><span>الإجمالي:</span><span id="total">0 ر.س</span></div>
-            <button class="checkout-btn" onclick="checkout()">💳 إتمام الشراء</button>
+            <button class="checkout-btn" onclick="checkout()">🛒 أكمل الشراء في نون</button>
         </div>
     </div>
     
@@ -295,6 +300,10 @@
             </div>
             <button class="btn btn-primary" style="width:100%;padding:12px" onclick="showToast('تم إرسال رسالتك بنجاح!')">📨 إرسال</button>
         </div>
+        <div style="margin-top:20px;background:white;padding:20px;border-radius:15px;text-align:center">
+            <p>📧 helmy.helmy44@gmail.com</p>
+            <p style="margin-top:10px">🌐 موقعنا على GitHub Pages</p>
+        </div>
     </div>
     
     <!-- صفحة من نحن -->
@@ -322,34 +331,83 @@
         <div class="footer-links">
             <a href="#" onclick="showSection('home')">الرئيسية</a>
             <a href="#" onclick="showSection('contact')">اتصل بنا</a>
-            <a href="#" onclick="showSection('about')">من نحن</a>
+            <a href="#" onclick="show
+Section('about')">من نحن</a>
         </div>
         <div class="footer-social">
-            <div class="social-icon">📘</div>
-            <div class="social-icon">🐦</div>
-            <div class="social-icon">📸</div>
-            <div class="social-icon">💬</div>
+            <div class="social-icon" onclick="window.open('https://facebook.com','_blank')">📘</div>
+            <div class="social-icon" onclick="window.open('https://twitter.com','_blank')">🐦</div>
+            <div class="social-icon" onclick="window.open('https://instagram.com','_blank')">📸</div>
+            <div class="social-icon" onclick="window.open('https://wa.me/201234567890','_blank')">💬</div>
         </div>
         <div class="footer-copy">© 2026 Helmy Noon Deals. جميع الحقوق محفوظة.</div>
     </div>
     
     <!-- Toast -->
     <div class="toast" id="toast"></div>
-          <script>
-        // بيانات المنتجات
+    
+    <script>
+        // الدولة الحالية
+        let currentCountry = 'saudi';
+        let currentCurrency = 'ر.س';
+        
+        // بيانات المنتجات مع روابط نون
         const products = [
-            {id:1,name:'آيفون 15 برو ماكس',price:4599,oldPrice:5099,discount:10,category:'mobiles',icon:'📱'},
-            {id:2,name:'سامسونج جالاكسي S24',price:3499,oldPrice:3999,discount:13,category:'mobiles',icon:'📱'},
-            {id:3,name:'ماك بوك برو 14"',price:6999,oldPrice:7999,discount:13,category:'laptops',icon:'💻'},
-            {id:4,name:'ديل XPS 13',price:4999,oldPrice:5999,discount:17,category:'laptops',icon:'💻'},
-            {id:5,name:'غسالة سامسونج 8 كجم',price:1899,oldPrice:2299,discount:17,category:'home',icon:'🏠'},
-            {id:6,name:'مكيف سبليت 1.5 حصان',price:1299,oldPrice:1599,discount:19,category:'home',icon:'❄️'},
-            {id:7,name:'سماعات AirPods Pro',price:899,oldPrice:1099,discount:18,category:'mobiles',icon:'🎧'},
-            {id:8,name:'آيباد برو 12.9"',price:4299,oldPrice:4899,discount:12,category:'laptops',icon:'📱'}
+            {id:1,name:'آيفون 15 برو ماكس',price:4599,oldPrice:5099,discount:10,category:'mobiles',icon:'📱',link:'https://www.noon.com/saudi-ar/iphone-15-pro-max/'},
+            {id:2,name:'سامسونج جالاكسي S24 الترا',price:3499,oldPrice:3999,discount:13,category:'mobiles',icon:'📱',link:'https://www.noon.com/saudi-ar/galaxy-s24-ultra/'},
+            {id:3,name:'ماك بوك برو 14 بوصة',price:6999,oldPrice:7999,discount:13,category:'laptops',icon:'💻',link:'https://www.noon.com/saudi-ar/macbook-pro-14/'},
+            {id:4,name:'ديل XPS 13',price:4999,oldPrice:5999,discount:17,category:'laptops',icon:'💻',link:'https://www.noon.com/saudi-ar/dell-xps-13/'},
+            {id:5,name:'غسالة سامسونج 8 كجم',price:1899,oldPrice:2299,discount:17,category:'home',icon:'🏠',link:'https://www.noon.com/saudi-ar/samsung-washing-machine-8kg/'},
+            {id:6,name:'مكيف سبليت 1.5 حصان',price:1299,oldPrice:1599,discount:19,category:'home',icon:'❄️',link:'https://www.noon.com/saudi-ar/split-ac-1-5-ton/'},
+            {id:7,name:'سماعات AirPods Pro 2',price:899,oldPrice:1099,discount:18,category:'mobiles',icon:'🎧',link:'https://www.noon.com/saudi-ar/airpods-pro-2/'},
+            {id:8,name:'آيباد برو 12.9 بوصة',price:4299,oldPrice:4899,discount:12,category:'laptops',icon:'📱',link:'https://www.noon.com/saudi-ar/ipad-pro-12-9/'}
         ];
         
         let cart = [];
         let favorites = [];
+        
+        // تغيير الدولة
+        function setCountry(code) {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const countries = {
+                sa: {name: 'السعودية', currency: 'ر.س', code: 'saudi'},
+                eg: {name: 'مصر', currency: 'ج.م', code: 'egypt'},
+                ae: {name: 'الإمارات', currency: 'د.إ', code: 'uae'}
+            };
+            
+            const c = countries[code];
+            currentCountry = c.code;
+            currentCurrency = c.currency;
+            
+            document.getElementById('countryInfo').innerHTML = 
+                (code==='sa'?'🇸🇦':code==='eg'?'🇪🇬':'🇦🇪') + 
+                ' أنت تتصفح: ' + c.name + ' | العملة: ' + c.currency;
+            
+            // تحديث أسعار المنتجات حسب الدولة
+            const rates = {sa:1, eg:13.3, ae:0.98};
+            const rate = rates[code];
+            
+            products.forEach(p => {
+                if(code === 'sa') {
+                    p.price = Math.round(p.price / (p.lastRate || 1));
+                    p.oldPrice = Math.round(p.oldPrice / (p.lastRate || 1));
+                } else {
+                    p.lastRate = rate;
+                    p.price = Math.round(p.price * rate);
+                    p.oldPrice = Math.round(p.oldPrice * rate);
+                }
+            });
+            
+            renderProducts('featuredProducts','all');
+            renderProducts('mobilesProducts','mobiles');
+            renderProducts('laptopsProducts','laptops');
+            renderProducts('homeProducts','home');
+            renderCart();
+            
+            showToast('✅ تم تغيير الدولة إلى ' + c.name);
+        }
         
         // عرض المنتجات
         function renderProducts(containerId, category) {
@@ -362,17 +420,29 @@
                     <div class="product-info">
                         <div class="product-name">${p.name}</div>
                         <div class="product-price">
-                            <span class="current-price">${p.price} ر.س</span>
-                            <span class="old-price">${p.oldPrice} ر.س</span>
+                            <span class="current-price">${p.price} ${currentCurrency}</span>
+                            <span class="old-price">${p.oldPrice} ${currentCurrency}</span>
                             <span class="discount-badge">-${p.discount}%</span>
                         </div>
                         <div class="product-actions">
-                            <button class="btn btn-primary" onclick="addToCart(${p.id})">🛒 أضف</button>
+                            <button class="btn btn-noon" onclick="openNoon('${p.link}')">🛒 نون</button>
+                            <button class="btn btn-primary" onclick="addToCart(${p.id})">أضف</button>
                             <button class="btn btn-fav" onclick="toggleFav(${p.id})">${favorites.includes(p.id)?'❤️':'🤍'}</button>
                         </div>
                     </div>
                 </div>
             `).join('');
+        }
+        
+        // فتح رابط نون
+        function openNoon(link) {
+            const countryLinks = {
+                saudi: link,
+                egypt: link.replace('saudi-ar', 'egypt-ar'),
+                uae: link.replace('saudi-ar', 'uae-ar')
+            };
+            window.open(countryLinks[currentCountry] || link, '_blank');
+            showToast('🛒 جاري فتح المنتج في نون...');
         }
         
         // إضافة للسلة
@@ -415,16 +485,17 @@
             }
             summary.style.display = 'block';
             const total = cart.reduce((sum,p) => sum + p.price, 0);
-            document.getElementById('subtotal').textContent = total + ' ر.س';
-            document.getElementById('total').textContent = total + ' ر.س';
+            document.getElementById('subtotal').textContent = total + ' ' + currentCurrency;
+            document.getElementById('total').textContent = total + ' ' + currentCurrency;
             container.innerHTML = cart.map((p,i) => `
                 <div class="cart-item">
                     <div class="cart-item-img">${p.icon}</div>
                     <div class="cart-item-info">
                         <div class="cart-item-name">${p.name}</div>
-                        <div class="cart-item-price">${p.price} ر.س</div>
+                        <div class="cart-item-price">${p.price} ${currentCurrency}</div>
                         <div class="cart-item-qty">
                             <button class="qty-btn" onclick="removeFromCart(${i})">🗑️</button>
+                            <button class="btn btn-noon" style="flex:none;padding:5px 10px" onclick="openNoon('${p.link}')">🛒 اشتري من نون</button>
                         </div>
                     </div>
                 </div>
@@ -450,9 +521,10 @@
                     <div class="product-img">${p.icon}</div>
                     <div class="product-info">
                         <div class="product-name">${p.name}</div>
-                        <div class="product-price"><span class="current-price">${p.price} ر.س</span></div>
+                        <div class="product-price"><span class="current-price">${p.price} ${currentCurrency}</span></div>
                         <div class="product-actions">
-                            <button class="btn btn-primary" onclick="addToCart(${p.id})">🛒 أضف</button>
+                            <button class="btn btn-noon" onclick="openNoon('${p.link}')">🛒 نون</button>
+                            <button class="btn btn-primary" onclick="addToCart(${p.id})">أضف للسلة</button>
                             <button class="btn btn-fav" onclick="toggleFav(${p.id})">❤️</button>
                         </div>
                     </div>
@@ -483,11 +555,12 @@
                     <div class="product-info">
                         <div class="product-name">${p.name}</div>
                         <div class="product-price">
-                            <span class="current-price">${p.price} ر.س</span>
-                            <span class="old-price">${p.oldPrice} ر.س</span>
+                            <span class="current-price">${p.price} ${currentCurrency}</span>
+                            <span class="old-price">${p.oldPrice} ${currentCurrency}</span>
                         </div>
                         <div class="product-actions">
-                            <button class="btn btn-primary" onclick="addToCart(${p.id})">🛒 أضف</button>
+                            <button class="btn btn-noon" onclick="openNoon('${p.link}')">🛒 نون</button>
+                            <button class="btn btn-primary" onclick="addToCart(${p.id})">أضف</button>
                             <button class="btn btn-fav" onclick="toggleFav(${p.id})">${favorites.includes(p.id)?'❤️':'🤍'}</button>
                         </div>
                     </div>
@@ -504,13 +577,24 @@
             setTimeout(function(){ t.classList.remove('show'); }, 3000);
         }
         
-        // إتمام الشراء
+        // إتمام الشراء - تحويل لنون
         function checkout() {
             if(cart.length === 0) return;
-            showToast('🎉 شكراً لك! تم إرسال طلبك بنجاح');
-            cart = [];
-            updateCartCount();
-            renderCart();
+            
+            const noonLinks = {
+                saudi: 'https://www.noon.com/saudi-ar/cart/',
+                egypt: 'https://www.noon.com/egypt-ar/cart/',
+                uae: 'https://www.noon.com/uae-ar/cart/'
+            };
+            
+            window.open(noonLinks[currentCountry] || noonLinks.saudi, '_blank');
+            showToast('🛒 جاري تحويلك لسلة نون لإكمال الشراء...');
+            
+            setTimeout(function(){
+                cart = [];
+                updateCartCount();
+                renderCart();
+            }, 5000);
         }
         
         // تهيئة
@@ -521,4 +605,3 @@
     </script>
 </body>
 </html>
-
