@@ -26,9 +26,9 @@
         .lang-btn{padding:8px 15px;border:2px solid #ddd;border-radius:20px;background:white;cursor:pointer;font-family:'Tajawal';font-weight:700;font-size:13px}
         .lang-btn.active{background:#1a1a2e;color:#ffd700;border-color:#1a1a2e}
         .nav-bar{display:flex;background:#1a1a2e;overflow-x:auto;padding:10px;gap:5px}
-        .nav-item{flex:1;min-width:80px;text-align:center;padding:10px;color:#ccc;text-decoration:none;border-radius:10px;font-size:14px;white-space:nowrap;cursor:pointer;border:none;background:transparent;font-family:'Tajawal'}
+        .nav-item{flex:1;min-width:70px;text-align:center;padding:10px;color:#ccc;text-decoration:none;border-radius:10px;font-size:13px;white-space:nowrap;cursor:pointer;border:none;background:transparent;font-family:'Tajawal'}
         .nav-item.active{background:#e74c3c;color:white}
-        .nav-item .nav-icon{display:block;font-size:20px;margin-bottom:3px}
+        .nav-item .nav-icon{display:block;font-size:18px;margin-bottom:3px}
         .section{display:none;padding:20px;min-height:calc(100vh - 300px)}
         .section.active{display:block}
         .products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
@@ -91,7 +91,7 @@
         .footer-links{display:flex;justify-content:center;gap:20px;margin:15px 0;flex-wrap:wrap}
         .footer-links a{color:#ccc;text-decoration:none}
         .footer-social{display:flex;justify-content:center;gap:15px;margin:15px 0}
-        .social-icon{width:40px;height:40px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+        .social-icon{width:40px;height:40px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer}
         .footer-copy{color:#666;font-size:12px;margin-top:15px}
         .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1a2e;color:white;padding:12px 25px;border-radius:25px;z-index:1000;display:none;font-weight:700}
         .toast.show{display:block;animation:fadeIn 0.3s}
@@ -100,6 +100,19 @@
         .empty-state .icon{font-size:60px;margin-bottom:15px}
         .empty-state h3{font-size:18px;color:#333;margin-bottom:10px}
         .country-info{background:#e8f4fd;padding:10px;border-radius:10px;text-align:center;margin-bottom:15px;font-weight:700;color:#1a1a2e}
+        /* Helmy AI Chat */
+        .chat-box{background:white;border-radius:15px;padding:15px;height:400px;overflow-y:auto;box-shadow:0 2px 8px rgba(0,0,0,0.1);margin-bottom:15px}
+        .chat-msg{display:flex;gap:10px;margin-bottom:15px}
+        .chat-msg.user{justify-content:flex-end}
+        .chat-bubble{max-width:80%;padding:12px 15px;border-radius:15px}
+        .chat-bubble.ai{background:#f0f0f0;color:#333}
+        .chat-bubble.user{background:#e74c3c;color:white}
+        .chat-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+        .chat-avatar.ai{background:linear-gradient(135deg,#667eea,#764ba2);color:white}
+        .chat-avatar.user{background:#ffd700}
+        .quick-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+        .ai-input{display:flex;gap:10px}
+        .ai-input input{flex:1;padding:12px;border:2px solid #ddd;border-radius:10px;font-family:'Tajawal';font-size:16px;outline:none}
         @media(min-width:768px){.products-grid{grid-template-columns:repeat(3,1fr)}.hero-buttons{flex-direction:row;justify-content:center}}
     </style>
 </head>
@@ -157,6 +170,10 @@
         <button class="nav-item" onclick="showSection('home-appliances')">
             <span class="nav-icon">🏠</span>
             منزلية
+        </button>
+        <button class="nav-item" onclick="showSection('ai-assistant')">
+            <span class="nav-icon">🤖</span>
+            Helmy AI
         </button>
     </div>
     
@@ -313,14 +330,31 @@
             <div style="font-size:60px;margin-bottom:15px">👑</div>
             <h2 style="color:#1a1a2e;margin-bottom:10px">Helmy Noon Deals</h2>
             <p style="color:#666;line-height:1.8">
-                منصة عروض نون اليومية تقدم لك أفضل المنتجات بأفضل الأسعار.
-                نحن شركاء مع نون السعودية ونقدم لك عمولات تصل إلى 10% على كل عملية شراء.
-            </p>
-            <div style="margin-top:20px;display:flex;justify-content:center;gap:20px">
-                <div style="text-align:center"><div style="font-size:30px">📦</div><div style="font-weight:700">1000+</div><div style="font-size:12px;color:#666">منتج</div></div>
-                <div style="text-align:center"><div style="font-size:30px">😊</div><div style="font-weight:700">500+</div><div style="font-size:12px;color:#666">عميل</div></div>
-                <div style="text-align:center"><div style="font-size:30px">⭐</div><div style="font-weight:700">4.8</div><div style="font-size:12px;color:#666">تقييم</div></div>
+                منصة عروض نون اليومية تقدم لك أفضل
+    <!-- صفحة Helmy AI -->
+    <div class="section" id="ai-assistant">
+        <div class="section-title">🤖 Helmy AI - مساعدك الذكي</div>
+        
+        <div class="chat-box" id="chatBox">
+            <div class="chat-msg">
+                <div class="chat-avatar ai">🤖</div>
+                <div class="chat-bubble ai">
+                    <div style="font-weight:700;color:#1a1a2e;margin-bottom:5px">Helmy AI</div>
+                    <div>مرحباً! أنا Helmy AI، مساعدك الذكي للتسوق في نون. كيف يمكنني مساعدتك اليوم؟</div>
+                </div>
             </div>
+        </div>
+        
+        <div class="quick-btns">
+            <button class="btn btn-secondary" onclick="sendQuick('عروض اليوم')" style="font-size:12px">🔥 عروض اليوم</button>
+            <button class="btn btn-secondary" onclick="sendQuick('موبايلات رخيصة')" style="font-size:12px">📱 موبايلات رخيصة</button>
+            <button class="btn btn-secondary" onclick="sendQuick('كيف أشتري؟')" style="font-size:12px">🛒 كيف أشتري؟</button>
+            <button class="btn btn-secondary" onclick="sendQuick('وين طلبي؟')" style="font-size:12px">📦 وين طلبي؟</button>
+        </div>
+        
+        <div class="ai-input">
+            <input type="text" id="aiInput" placeholder="اكتب سؤالك هنا..." onkeypress="if(event.key==='Enter')sendAI()">
+            <button class="btn btn-primary" onclick="sendAI()" style="padding:12px 20px">📨 إرسال</button>
         </div>
     </div>
     
@@ -331,8 +365,7 @@
         <div class="footer-links">
             <a href="#" onclick="showSection('home')">الرئيسية</a>
             <a href="#" onclick="showSection('contact')">اتصل بنا</a>
-            <a href="#" onclick="show
-Section('about')">من نحن</a>
+            <a href="#" onclick="showSection('about')">من نحن</a>
         </div>
         <div class="footer-social">
             <div class="social-icon" onclick="window.open('https://facebook.com','_blank')">📘</div>
@@ -385,7 +418,6 @@ Section('about')">من نحن</a>
                 (code==='sa'?'🇸🇦':code==='eg'?'🇪🇬':'🇦🇪') + 
                 ' أنت تتصفح: ' + c.name + ' | العملة: ' + c.currency;
             
-            // تحديث أسعار المنتجات حسب الدولة
             const rates = {sa:1, eg:13.3, ae:0.98};
             const rate = rates[code];
             
@@ -597,6 +629,91 @@ Section('about')">من نحن</a>
             }, 5000);
         }
         
+        // Helmy AI - مساعد ذكي
+        function sendQuick(text) {
+            document.getElementById('aiInput').value = text;
+            sendAI();
+        }
+        
+        function sendAI() {
+            const input = document.getElementById('aiInput');
+            const text = input.value.trim();
+            if(!text) return;
+            
+            addChatMsg(text, 'user');
+            input.value = '';
+            
+            setTimeout(() => {
+                const reply = getAIReply(text);
+                addChatMsg(reply, 'ai');
+            }, 500);
+        }
+        
+        function addChatMsg(text, sender) {
+            const box = document.getElementById('chatBox');
+            const isUser = sender === 'user';
+            
+            const html = `
+                <div class="chat-msg ${isUser?'user':''}">
+                    ${!isUser ? '<div class="chat-avatar ai">🤖</div>' : ''}
+                    <div class="chat-bubble ${sender}">
+                        ${!isUser ? '<div style="font-weight:700;color:#1a1a2e;margin-bottom:5px">Helmy AI</div>' : ''}
+                        <div>${text}</div>
+                    </div>
+                    ${isUser ? '<div class="chat-avatar user">👤</div>' : ''}
+                </div>
+            `;
+            
+            box.insertAdjacentHTML('beforeend', html);
+            box.scrollTop = box.scrollHeight;
+        }
+        
+        function getAIReply(text) {
+            const q = text.toLowerCase();
+            
+            if(q.includes('عروض') || q.includes('تخفيض') || q.includes('خصم')) {
+                return '🔥 عروض اليوم:<br>• آيفون 15 برو ماكس: 4599 ر.س (خصم 10%)<br>• سامسونج S24: 3499 ر.س (خصم 13%)<br>• ماك بوك برو: 6999 ر.س (خصم 13%)<br><br>اضغط على أي منتج واشتري من نون!';
+            }
+            
+            if(q.includes('موبايل') || q.includes('هاتف') || q.includes('آيفون') || q.includes('سامسونج')) {
+                return '📱 أفضل الموبايلات:<br>• آيفون 15 برو ماكس - 4599 ر.س<br>• سامسونج S24 الترا - 3499 ر.س<br>• سماعات AirPods Pro - 899 ر.س<br><br>تصفح قسم الموبايلات للمزيد!';
+            }
+            
+            if(q.includes('لابتوب') || q.includes('كمبيوتر') || q.includes('ماك')) {
+                return '💻 أفضل اللابتوبات:<br>• ماك بوك برو 14" - 6999 ر.س<br>• ديل XPS 13 - 4999 ر.س<br>• آيباد برو 12.9" - 4299 ر.س';
+            }
+            
+            if(q.includes('اشتري') || q.includes('شراء') || q.includes('كيف') || q.includes('طريقة')) {
+                return '🛒 كيف تشتري من Helmy Noon Deals:<br>1. اختر المنتج اللي يعجبك<br>2. اضغط على زر "🛒 نون"<br>3. أكمل الشراء في موقع نون الرسمي<br>4. احصل على عمولة تصل إلى 10%!<br><br>سهل وآمن 100%!';
+            }
+            
+            if(q.includes('طلبي') || q.includes('شحنة') || q.includes('وين') || q.includes('تتبع')) {
+                return '📦 لتتبع طلبك:<br>ادخل على موقع نون مباشرة:<br><a href="https://www.noon.com/saudi-ar/track-order/" target="_blank" style="color:#e74c3c">تتبع الطلب في نون</a><br><br>أو اتصل بخدمة العملاء: 16358';
+            }
+            
+            if(q.includes('سلة') || q.includes('عربة') || q.includes('cart')) {
+                return '🛍️ سلة المشتريات:<br>اضغط على أيقونة السلة 🛍️ في الأعلى لعرض محتويات سلتك وإتمام الشراء!';
+            }
+            
+            if(q.includes('مفضلة') || q.includes('fav') || q.includes('حفظ')) {
+                return '❤️ المفضلة:<br>اضغط على ❤️ في أي منتج لحفظه في المفضلة. ثم اعرضها من أيقونة القلب في الأعلى!';
+            }
+            
+            if(q.includes('آمن') || q.includes('موثوق') || q.includes('نصاب')) {
+                return '✅ Helmy Noon Deals آمن 100%!<br>• نحن شركاء مع نون الرسمي<br>• كل الروابط تذهب لموقع noon.com مباشرة<br>• لا نجمع بيانات الدفع<br>• عمولتك تصل تلقائياً بعد الشراء';
+            }
+            
+            if(q.includes('مرحبا') || q.includes('هلا') || q.includes('السلام') || q.includes('هاي')) {
+                return '👋 هلا والله! أنا Helmy AI، مساعدك الذكي. كيف أقدر أساعدك اليوم؟';
+            }
+            
+            if(q.includes('باي') || q.includes('مع السلامة') || q.includes('شكرا')) {
+                return '😊 العفو! إذا احتجت أي شيء، أنا هنا. تصبح على خير! 🌙';
+            }
+            
+            return '🤔 لم أفهم سؤالك تماماً.<br>جرب أسئلة مثل:<br>• "عروض اليوم"<br>• "موبايلات رخيصة"<br>• "كيف أشتري؟"<br>• "وين طلبي؟"<br><br>أو اكتب سؤالك بوضوح أكثر!';
+        }
+        
         // تهيئة
         renderProducts('featuredProducts','all');
         renderProducts('mobilesProducts','mobiles');
@@ -604,4 +721,6 @@ Section('about')">من نحن</a>
         renderProducts('homeProducts','home');
     </script>
 </body>
-</html>
+        </html>
+            
+                
